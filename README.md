@@ -24,7 +24,7 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ---
 
-## 🚀 Features {#features}
+## <a id="features"></a> 🚀 Features {#features}
 
 - 🌤️ Live weather updates (AccuWeather API)
 - 📰 Current news headlines
@@ -40,7 +40,7 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ---
 
-## 🧱 Tech Stack
+## <a id=""></a> 🧱 Tech Stack
 
 | Frontend       |           Backend            |                     Other |
 | :------------- | :--------------------------: | ------------------------: |
@@ -51,7 +51,7 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ---
 
-## 📁 Project Structure
+## <a id=""></a> 📁 Project Structure
 
 ```
 magic-mirror-on-the-wall/
@@ -65,7 +65,7 @@ magic-mirror-on-the-wall/
 
 ---
 
-## 🌱 Getting Started
+## <a id=""></a> 🌱 Getting Started
 
 ### Clone the Repo
 
@@ -120,7 +120,7 @@ _Tested on the following versions_
 
 ---
 
-## 🔮 Future Enhancements
+## <a id=""></a> 🔮 Future Enhancements
 
 - Facial recognition via camera input
 - Multi-user profile system
@@ -130,18 +130,18 @@ _Tested on the following versions_
 
 ---
 
-## 📝 License
+## <a id=""></a> 📝 License
 
 MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-## 💬 Feedback / Contributing
+## <a id=""></a> 💬 Feedback / Contributing
 
 Feel free to open issues or PRs. More features and optimizations are on the horizon!
 
 ---
 
-## 📷 Screenshots
+## <a id=""></a> 📷 Screenshots
 
 ![Magic Mirror on the Wall](mirror-ui.png?raw=true)
