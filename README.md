@@ -83,7 +83,7 @@ _From parent directory_
 ```
 cd frontend
 npm install
-npm run dev
+npm run build
 ```
 
 #### Backend
