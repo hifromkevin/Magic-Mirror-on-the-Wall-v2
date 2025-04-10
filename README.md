@@ -6,10 +6,10 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ## 📚 Table of Contents
 
-1. [Features](#-features)
-2. [Tech Stack](#-tech-stack)
-3. [Project Structure](#-project-structure)
-4. [Getting Started](#-getting-started)
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Project Structure](#project-structure)
+4. [Getting Started](#getting-started)
    - [Clone the Repo](#clone-the-repo)
    - [Install Dependencies](#install-dependencies)
      - [Frontend](#frontend)
@@ -17,14 +17,14 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
      - [Run Makefile](#run-makefile)
      - [Run Docker](#run-docker)
    - [Requirements](#requirements)
-5. [Future Enhancements](#-future-enhancements)
-6. [License](#-license)
-7. [Feedback / Contributing](#-contributing)
-8. [Screenshots](#-screenshots)
+5. [Future Enhancements](#future-enhancements)
+6. [License](#license)
+7. [Feedback / Contributing](#contributing)
+8. [Screenshots](#screenshots)
 
 ---
 
-## 🚀 Features {#-features}
+## 🚀 Features
 
 - 🌤️ Live weather updates (AccuWeather API)
 - 📰 Current news headlines
@@ -40,7 +40,7 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ---
 
-## 🧱 Tech Stack {#-tech-stack}
+## 🧱 Tech Stack
 
 | Frontend       |           Backend            |                     Other |
 | :------------- | :--------------------------: | ------------------------: |
@@ -51,7 +51,7 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 
 ---
 
-## 📁 Project Structure {#-project-structure}
+## 📁 Project Structure
 
 ```
 magic-mirror-on-the-wall/
@@ -65,18 +65,18 @@ magic-mirror-on-the-wall/
 
 ---
 
-## 🌱 Getting Started {#-getting-started}
+## 🌱 Getting Started
 
-### Clone the Repo (#clone-the-repo)
+### Clone the Repo
 
 ```
 git clone https://github.com/hifromkevin/Magic-Mirror-on-the-Wall-v2.git
 cd Magic-Mirror-on-the-Wall-v2
 ```
 
-### Install Dependencies (#install-dependencies)
+### Install Dependencies
 
-#### Frontend (#frontend)
+#### Frontend
 
 _From parent directory_
 
@@ -86,7 +86,7 @@ npm install
 npm run dev
 ```
 
-#### Backend (#backend)
+#### Backend
 
 _From parent directory_
 
@@ -95,7 +95,7 @@ cd backend
 go run main.go
 ```
 
-#### Run Makefile (#run-makefile)
+#### Run Makefile
 
 _From parent directory_
 
@@ -103,7 +103,7 @@ _From parent directory_
 make build
 ```
 
-#### Run Docker (#run-docker)
+#### Run Docker
 
 _From parent directory_
 
@@ -111,7 +111,7 @@ _From parent directory_
 docker-compose up --build
 ```
 
-### Requirements (#requirements)
+### Requirements
 
 _Tested on the following versions_
 **Node Version**: `v23.9.0`
@@ -120,7 +120,7 @@ _Tested on the following versions_
 
 ---
 
-## 🔮 Future Enhancements {#-future-enhancements}
+## 🔮 Future Enhancements
 
 - Facial recognition via camera input
 - Multi-user profile system
@@ -130,18 +130,18 @@ _Tested on the following versions_
 
 ---
 
-## 📝 License {#-license}
+## 📝 License
 
 MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ---
 
-## 💬 Feedback / Contributing {#-contributing}
+## 💬 Feedback / Contributing
 
 Feel free to open issues or PRs. More features and optimizations are on the horizon!
 
 ---
 
-## 📷 Screenshots {#-screenshots}
+## 📷 Screenshots
 
 ![Magic Mirror on the Wall](mirror-ui.png?raw=true)
