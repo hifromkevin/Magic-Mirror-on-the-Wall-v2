@@ -19,12 +19,12 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
    - [Requirements](#requirements)
 5. [Future Enhancements](#future-enhancements)
 6. [License](#license)
-7. [Feedback / Contributing](#contributing)
+7. [Feedback / Contributing](#feedback--contributing)
 8. [Screenshots](#screenshots)
 
 ---
 
-## 🚀 Features
+## 🚀 Features {#features}
 
 - 🌤️ Live weather updates (AccuWeather API)
 - 📰 Current news headlines
