@@ -6,6 +6,8 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+
+	"magic-mirror-on-the-wall-backend/routes"
 )
 
 func enableCORS(next http.Handler) http.Handler {
@@ -22,6 +24,8 @@ func enableCORS(next http.Handler) http.Handler {
 
 func main() {
 	router := mux.NewRouter()
+
+	router.HandleFunc("/dadJoke", routes.GetDadJoke).Methods("GET")
 
 	staticDir := "../frontend/dist"
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(staticDir))))
