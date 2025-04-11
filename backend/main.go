@@ -6,9 +6,18 @@ import (
 	"os"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 
 	"magic-mirror-on-the-wall-backend/routes"
 )
+
+func init() {
+	if os.Getenv("GO_ENV") != "production" {
+		if err := godotenv.Load("../.env"); err != nil {
+			log.Println("Warning: .env file not found")
+		}
+	}
+}
 
 func enableCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -26,6 +35,7 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/dadJoke", routes.GetDadJoke).Methods("GET")
+	router.HandleFunc("/news", routes.GetNews).Methods("GET")
 
 	staticDir := "../frontend/dist"
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(staticDir))))
