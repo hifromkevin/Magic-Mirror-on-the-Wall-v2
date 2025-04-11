@@ -1,5 +1,5 @@
 interface IArticle {
-  title: string;
+  title: string | null;
   author?: string | null;
 }
 const Article = ({ title, author }: IArticle) => {
