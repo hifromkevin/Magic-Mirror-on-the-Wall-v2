@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { screen } from '@testing-library/react';
 import { renderWithQueryClient } from '../../../utils/TestUtils';
 import DadJoke from '../DadJoke';
@@ -7,7 +5,7 @@ import * as useFetchDadJokeHook from '../../../hooks/useFetchDadJoke';
 
 jest.mock('../../../hooks/useFetchDadJoke');
 
-const mockUseFetchDadJoke = useFetchDadJokeHook.useFetchDadJoke;
+const mockUseFetchDadJoke = useFetchDadJokeHook.useFetchDadJoke as jest.Mock;
 
 describe('DadJoke Component', () => {
   it('renders loading state', () => {
@@ -19,7 +17,6 @@ describe('DadJoke Component', () => {
     });
 
     renderWithQueryClient(<DadJoke />);
-
     expect(screen.getByText("Hi, Loading! I'm Dad!")).toBeInTheDocument();
   });
 
@@ -32,7 +29,6 @@ describe('DadJoke Component', () => {
     });
 
     renderWithQueryClient(<DadJoke />);
-
     expect(
       screen.getByText('Error: Failed to fetch dad joke')
     ).toBeInTheDocument();
@@ -47,7 +43,6 @@ describe('DadJoke Component', () => {
     });
 
     renderWithQueryClient(<DadJoke />);
-
     expect(
       screen.getByText(
         "Dad Joke: Why don't skeletons fight each other? They don't have the guts."
