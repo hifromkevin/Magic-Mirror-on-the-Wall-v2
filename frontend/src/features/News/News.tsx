@@ -9,12 +9,12 @@ import NewsIcon from '../../assets/svg/news.svg';
 const News = () => {
   const { news, error, isError, isLoading } = useFetchNews();
   if (isLoading) {
-    return <div className="dadJokeContainer">Loading news</div>;
+    return <div className="newsContainer">Loading news</div>;
   }
   if (isError) {
     return (
-      <div className="dadJokeContainer">
-        <p>No news is bad news: {error ? error.message : ''}</p>
+      <div className="newsContainer">
+        <p>No news is bad news{error ? `: ${error.message}` : ''}</p>
       </div>
     );
   }
