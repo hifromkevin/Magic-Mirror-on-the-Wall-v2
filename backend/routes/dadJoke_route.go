@@ -2,7 +2,6 @@ package routes
 
 import (
 	"encoding/json"
-	"log"
 	"net/http"
 )
 
@@ -35,8 +34,6 @@ func GetDadJoke(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Failed to decode dad joke: "+err.Error(), http.StatusInternalServerError)
 			return
 	}
-
-	log.Printf("!!!", dadJokeData)
 
 	json.NewEncoder(w).Encode(dadJokeData)
 }
