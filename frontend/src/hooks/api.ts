@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: import.meta.env.REACT_API_BASE_URL,
+  baseURL: process.env.REACT_API_BASE_URL,
 });
 
 export const getRequest = async <T>(URL: string): Promise<T> => {

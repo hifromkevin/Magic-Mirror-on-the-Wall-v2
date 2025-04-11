@@ -11,4 +11,7 @@ export default defineConfig({
   envDir: '../',
   envPrefix: 'REACT_',
   plugins: [react()],
+  define: {
+    'process.env': process.env,
+  },
 });
