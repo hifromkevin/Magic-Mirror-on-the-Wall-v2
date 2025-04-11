@@ -2,7 +2,7 @@
 
 const Weather = () => {
   return (
-    <div className="weatherCotainer">
+    <div className="weatherContainer">
       <h1>Weather</h1>
       {/* <img src={getWeatherIcon(1)} alt="Weather Icon" /> */}
     </div>

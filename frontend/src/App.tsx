@@ -10,7 +10,7 @@ import './App.css';
 
 const App = () => {
   return (
-    <div className="appCotainer">
+    <div className="appContainer">
       <div className="upperSection">
         <Weather />
         <DateAndTime />

@@ -14,7 +14,7 @@ const DateAndTime = () => {
   }, []);
 
   return (
-    <div className="dateAndTimeCotainer">
+    <div className="dateAndTimeContainer">
       <p className="dateAndTime__time">{time(currentDate)}</p>
       <p className="dateAndTime__date">{fullDate(currentDate)}</p>
       <p className="dateAndTime__day">{weekday(currentDate)}</p>
