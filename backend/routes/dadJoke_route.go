@@ -3,13 +3,11 @@ package routes
 import (
 	"encoding/json"
 	"net/http"
+
+	"magic-mirror-on-the-wall-backend/types"
 )
 
-type DadJoke struct {
-	ID     string `json:"id"`
-	Joke   string `json:"joke"`
-	Status int    `json:"status"`
-}
+
 
 func GetDadJoke(w http.ResponseWriter, r *http.Request) {
 	req, err := http.NewRequest("GET", "https://icanhazdadjoke.com", nil)
@@ -28,7 +26,7 @@ func GetDadJoke(w http.ResponseWriter, r *http.Request) {
 	}
 	defer resp.Body.Close()
 
-	var dadJokeData DadJoke
+	var dadJokeData types.DadJoke
 	err = json.NewDecoder(resp.Body).Decode(&dadJokeData)
 	if err != nil {
 			http.Error(w, "Failed to decode dad joke: "+err.Error(), http.StatusInternalServerError)

@@ -36,6 +36,7 @@ func main() {
 
 	router.HandleFunc("/dadJoke", routes.GetDadJoke).Methods("GET")
 	router.HandleFunc("/news", routes.GetNews).Methods("GET")
+	router.HandleFunc("/weather", routes.GetWeather).Methods("GET")
 
 	staticDir := "../frontend/dist"
 	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(staticDir))))

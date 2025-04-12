@@ -6,29 +6,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"magic-mirror-on-the-wall-backend/types"
 )
 
-type NewsResponse struct {
-    Status       string    `json:"status"`
-    TotalResults int       `json:"totalResults"`
-    Articles     []Article `json:"articles"`
-}
 
-type Article struct {
-    Source      Source  `json:"source"`
-    Author      string  `json:"author"`
-    Title       string  `json:"title"`
-    Description *string `json:"description"`
-    URL         string  `json:"url"`
-    URLToImage  *string `json:"urlToImage"`
-    PublishedAt string  `json:"publishedAt"`
-    Content     *string `json:"content"`
-}
-
-type Source struct {
-    ID   *string `json:"id"`
-    Name string  `json:"name"`
-}
 
 func GetNews(w http.ResponseWriter, r *http.Request) {
 	apiKey := os.Getenv("NEWS_API")
@@ -53,7 +35,7 @@ func GetNews(w http.ResponseWriter, r *http.Request) {
 			return
 	}
 
-	var newsResponse NewsResponse
+	var newsResponse types.NewsResponse
 	err = json.NewDecoder(resp.Body).Decode(&newsResponse)
 	if err != nil {
 			log.Printf("Failed to decode news response: %v", err)
