@@ -21,7 +21,7 @@ const News = () => {
 
   return (
     <div className="newsContainer">
-      <h1 className="title">News</h1>
+      <p className="title">Headlines</p>
 
       <div className="newsArticles">
         {news?.slice(0, 5).map((article: INewsArticle, index: number) => (
