@@ -3,31 +3,44 @@ export type TWeatherResponse =
   | {
       current: IWeatherCurrent;
       forecast: IWeatherForecast[];
+      location?: string;
     }
   | {
       current: IWeatherError;
       forecast: IWeatherError;
+      location?: string;
     }
   | {
       current: IWeatherError;
       forecast: IWeatherForecast[];
+      location?: string;
     }
   | {
       current: IWeatherCurrent;
       forecast: IWeatherError;
-    };
+      location?: string;
+    }
+  | null;
 
-interface IWeatherError {
-  Code: string;
-  Message: string;
-  Reference: string;
+export interface IWeatherError {
+  code: string;
+  message: string;
+  reference: string;
+}
+
+export interface IWeatherInternalError {
+  code?: string;
+  message: string;
+  status?: number;
+  [key: string]: any;
 }
 
 //  export interface IWeatherInternalError {
-//   Code: string;
-//   Message: string;
-//   Reference: string;
-// }
+// message: 'Request failed with status code 404',
+// name: 'AxiosError',
+// code: 'ERR_BAD_REQUEST',
+// config: {…},
+// request: XMLHttpRequest, …}
 
 // Current Weather
 interface IWeatherCurrent {
