@@ -76,6 +76,7 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 	fullResponse := types.WeatherResponse{
 		Current:  currentData[0],
 		Forecast: forecastWrapper.DailyForecasts,
+		Location: fmt.Sprintf("%s, %s", ipInfo.City, ipInfo.Region), 
 	}
 
 	w.Header().Set("Content-Type", "application/json")
