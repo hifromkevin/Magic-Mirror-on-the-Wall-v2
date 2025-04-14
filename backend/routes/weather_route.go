@@ -108,6 +108,7 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 			UVIndex: currentData[0].UVIndex,
 			UVIndexText: currentData[0].UVIndexText,
 			Visibility: currentData[0].Visibility,
+			IsDayTime: currentData[0].IsDayTime,
 		},
 		Forecast: weatherTypes.WeatherForecastData{
 			WeatherText:  forecastData.Headline.Text,

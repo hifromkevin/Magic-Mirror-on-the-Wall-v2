@@ -12,6 +12,7 @@ type WeatherCurrentData struct {
     UVIndex                    int         `json:"uVIndex"`
     UVIndexText                string      `json:"uVIndexText"`
     Visibility                 Measurement `json:"visibility"`
+    IsDayTime                  bool        `json:"isDayTime"`
 }
 
 type WeatherCurrentResponse struct {
