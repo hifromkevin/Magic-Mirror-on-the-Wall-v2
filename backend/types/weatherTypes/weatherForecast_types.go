@@ -1,5 +1,20 @@
 package weatherTypes
 
+type WeatherForecastData struct {
+	WeatherText      string                   `json:"weatherText"`
+	ForecastData		 []WeatherSingleForecast  `json:"forecastData"`
+}
+
+type WeatherSingleForecast struct {
+	Date            string  `json:"date"`            
+	TemperatureHigh float64 `json:"temperatureHigh"` 
+	TemperatureLow  float64 `json:"temperatureLow"`  
+	IconDay         int     `json:"iconDay"`         
+	IconDayPhrase   string  `json:"iconDayPhrase"`   
+	IconNight       int     `json:"iconNight"`       
+	IconNightPhrase string  `json:"iconNightPhrase"` 
+}
+
 type WeatherForecastResponse struct {
 	Headline       Headline        `json:"Headline"`
 	DailyForecasts []DailyForecast `json:"DailyForecasts"`

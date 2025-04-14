@@ -1,26 +1,9 @@
 // Root Weather Response
-export type TWeatherResponse =
-  | {
-      current: IWeatherCurrent;
-      forecast: IWeatherForecast[];
-      location?: string;
-    }
-  | {
-      current: IWeatherError;
-      forecast: IWeatherError;
-      location?: string;
-    }
-  | {
-      current: IWeatherError;
-      forecast: IWeatherForecast[];
-      location?: string;
-    }
-  | {
-      current: IWeatherCurrent;
-      forecast: IWeatherError;
-      location?: string;
-    }
-  | null;
+export interface IWeatherResponse {
+  current: IWeatherCurrent;
+  forecast: IWeatherForecast;
+  location?: string;
+}
 
 export interface IWeatherError {
   code: string;
@@ -35,81 +18,44 @@ export interface IWeatherInternalError {
   [key: string]: any;
 }
 
-//  export interface IWeatherInternalError {
-// message: 'Request failed with status code 404',
-// name: 'AxiosError',
-// code: 'ERR_BAD_REQUEST',
-// config: {…},
-// request: XMLHttpRequest, …}
-
 // Current Weather
-interface IWeatherCurrent {
-  LocalObservationDateTime: string;
-  EpochTime: number;
-  WeatherText: string;
-  WeatherIcon: number;
-  HasPrecipitation: boolean;
-  PrecipitationType: string | null;
-  IsDayTime: boolean;
-  Temperature: ITemperature;
-  RealFeelTemperature: IRealFeelTemperature;
-  RealFeelTemperatureShade: IRealFeelTemperature;
-  RelativeHumidity: number;
-  IndoorRelativeHumidity: number;
-  DewPoint: IMeasurement;
-  Wind: IWind;
-  WindGust: IWindGust;
-  UVIndex: number;
-  UVIndexText: string;
-  Visibility: IMeasurement;
-  ObstructionsToVisibility: string;
-  CloudCover: number;
-  Ceiling: IMeasurement;
-  Pressure: IMeasurement;
-  PressureTendency: IPressureTendency;
-  Past24HourTemperatureDeparture: IMeasurement;
-  ApparentTemperature: IMeasurement;
-  WindChillTemperature: IMeasurement;
-  WetBulbTemperature: IMeasurement;
-  WetBulbGlobeTemperature: IMeasurement;
-  Precip1hr: IMeasurement;
-  PrecipitationSummary: IPrecipitationSummary;
-  TemperatureSummary: ITemperatureSummary;
-  MobileLink: string;
-  Link: string;
+export interface IWeatherCurrent {
+  realFeel: number;
+  realFeelShade: number;
+  relativeHumidity: number;
+  temperature: number;
+  uVIndex: number;
+  uVIndexText: string;
+  visibility: IMeasurements;
+  weatherIcon: number;
+  weatherText: string;
+  wind: IWind;
+  windGust: IWindGust;
 }
 
 // Forecast Weather
-interface IWeatherForecast {
-  Date: string;
-  EpochDate: number;
-  Temperature: ITemperatureRange;
-  Day: IForecastDetails;
-  Night: IForecastDetails;
-  Sources: string[];
-  MobileLink: string;
-  Link: string;
+export interface IWeatherForecast {
+  weatherText: string;
+  forecastData: IWeatherForecastData[];
+}
+
+interface IWeatherForecastData {
+  date: string;
+  temperatureHigh: number;
+  temperatureLow: number;
+  iconDay: number;
+  iconDayPhrase: string;
+  iconNight: number;
+  iconNightPhrase: string;
 }
 
 // Shared Types
-interface ITemperature {
-  Metric: IMeasurement;
-  Imperial: IMeasurement;
+interface IMeasurements {
+  Metric: IMeasurementUnits;
+  Imperial: IMeasurementUnits;
 }
 
-interface IRealFeelTemperature {
-  Metric: IRealFeelMeasurement;
-  Imperial: IRealFeelMeasurement;
-}
-
-interface IRealFeelMeasurement {
-  Value: number;
-  Unit: string;
-  UnitType: number;
-  Phrase: string;
-}
-
-interface IMeasurement {
+interface IMeasurementUnits {
   Value: number;
   Unit: string;
   UnitType: number;
@@ -117,7 +63,7 @@ interface IMeasurement {
 
 interface IWind {
   Direction: IWindDirection;
-  Speed: ITemperature;
+  Speed: IMeasurements;
 }
 
 interface IWindDirection {
@@ -127,38 +73,5 @@ interface IWindDirection {
 }
 
 interface IWindGust {
-  Speed: ITemperature;
-}
-
-interface IPressureTendency {
-  LocalizedText: string;
-  Code: string;
-}
-
-interface IPrecipitationSummary {
-  Precipitation: ITemperature;
-  PastHour: ITemperature;
-  Past3Hours: ITemperature;
-  Past6Hours: ITemperature;
-  Past9Hours: ITemperature;
-  Past12Hours: ITemperature;
-  Past18Hours: ITemperature;
-  Past24Hours: ITemperature;
-}
-
-interface ITemperatureSummary {
-  Past6HourRange: ITemperatureRange;
-  Past12HourRange: ITemperatureRange;
-  Past24HourRange: ITemperatureRange;
-}
-
-interface ITemperatureRange {
-  Minimum: ITemperature;
-  Maximum: ITemperature;
-}
-
-interface IForecastDetails {
-  Icon: number;
-  IconPhrase: string;
-  HasPrecipitation: boolean;
+  Speed: IMeasurements;
 }

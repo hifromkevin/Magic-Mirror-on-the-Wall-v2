@@ -7,7 +7,16 @@ import (
 	"magic-mirror-on-the-wall-backend/types/weatherTypes"
 	"net/http"
 	"os"
+	"time"
 )
+
+func formatDate(dateStr string) string {
+	parsedDate, err := time.Parse(time.RFC3339, dateStr)
+	if err != nil {
+			return dateStr // Return the original string if parsing fails
+	}
+	return parsedDate.Format("Monday, Jan 2") // Format as "Mon Day" (e.g., "Apr 14")
+	}
 
 func GetWeather(w http.ResponseWriter, r *http.Request) {
 	ipApiKey := os.Getenv("IP_INFO_API")
@@ -65,17 +74,45 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 	}
 	defer forecastResp.Body.Close()
 
-	var forecastWrapper struct {
-		DailyForecasts []weatherTypes.WeatherForecastResponse `json:"DailyForecasts"`
-	}
-	if err := json.NewDecoder(forecastResp.Body).Decode(&forecastWrapper); err != nil {
-		http.Error(w, "Failed to decode forecast", http.StatusInternalServerError)
-		return
+	var forecastData weatherTypes.WeatherForecastResponse
+
+	if err := json.NewDecoder(forecastResp.Body).Decode(&forecastData); err != nil {
+			http.Error(w, "Failed to decode forecast", http.StatusInternalServerError)
+			return
 	}
 
+	forecastsFiveDays := make([]weatherTypes.WeatherSingleForecast, 0, 5)
+	for _, forecast := range forecastData.DailyForecasts[1:5] {
+			forecastsFiveDays = append(forecastsFiveDays, weatherTypes.WeatherSingleForecast{
+					Date:            formatDate(forecast.Date),
+					TemperatureHigh: forecast.Temperature.Maximum.Value,
+					TemperatureLow:  forecast.Temperature.Minimum.Value,
+					IconDay:         forecast.Day.Icon,
+					IconDayPhrase:   forecast.Day.IconPhrase,
+					IconNight:       forecast.Night.Icon,
+					IconNightPhrase: forecast.Night.IconPhrase,
+			})
+	}
+
+
 	fullResponse := types.WeatherResponse{
-		Current:  currentData[0],
-		Forecast: forecastWrapper.DailyForecasts,
+		Current: weatherTypes.WeatherCurrentData{
+			WeatherText: currentData[0].WeatherText,
+			WeatherIcon: currentData[0].WeatherIcon,
+			Temperature: currentData[0].Temperature.Imperial.Value,
+			RealFeelTemperature: currentData[0].RealFeelTemperature.Imperial.Value,
+			RealFeelTemperatureShade: currentData[0].RealFeelTemperatureShade.Imperial.Value,
+			RelativeHumidity: currentData[0].RelativeHumidity,
+			Wind: currentData[0].Wind,
+			WindGust: currentData[0].WindGust,
+			UVIndex: currentData[0].UVIndex,
+			UVIndexText: currentData[0].UVIndexText,
+			Visibility: currentData[0].Visibility,
+		},
+		Forecast: weatherTypes.WeatherForecastData{
+			WeatherText:  forecastData.Headline.Text,
+			ForecastData: forecastsFiveDays,
+	},
 		Location: fmt.Sprintf("%s, %s", ipInfo.City, ipInfo.Region), 
 	}
 

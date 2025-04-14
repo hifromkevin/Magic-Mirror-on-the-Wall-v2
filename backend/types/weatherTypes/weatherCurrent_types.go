@@ -1,5 +1,19 @@
 package weatherTypes
 
+type WeatherCurrentData struct {
+    WeatherText                string      `json:"weatherText"`
+    WeatherIcon                int         `json:"weatherIcon"`
+    Temperature                float64     `json:"temperature"`
+    RealFeelTemperature        float64     `json:"realFeel"`
+    RealFeelTemperatureShade   float64     `json:"realFeelShade"`
+    RelativeHumidity           int         `json:"relativeHumidity"`
+    Wind                       Wind        `json:"wind"`
+    WindGust                   WindGust    `json:"windGust"`
+    UVIndex                    int         `json:"uVIndex"`
+    UVIndexText                string      `json:"uVIndexText"`
+    Visibility                 Measurement `json:"visibility"`
+}
+
 type WeatherCurrentResponse struct {
     LocalObservationDateTime    string                 `json:"LocalObservationDateTime"`
     EpochTime                   int64                  `json:"EpochTime"`
