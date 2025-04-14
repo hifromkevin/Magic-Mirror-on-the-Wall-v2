@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getRequest } from './api';
 
-import { TWeatherResponse, IWeatherInternalError } from '../types/WeatherTypes';
+import { IWeatherResponse, IWeatherInternalError } from '../types/WeatherTypes';
 
 export const useFetchWeather = () => {
   const { data, error, isError, isLoading } = useQuery<
-    TWeatherResponse,
+    IWeatherResponse,
     IWeatherInternalError
   >({
     queryKey: ['weather'],
@@ -13,5 +13,10 @@ export const useFetchWeather = () => {
     refetchOnWindowFocus: false,
   });
 
-  return { weather: data || null, error, isError, isLoading };
+  return {
+    weather: (data as IWeatherResponse) || null,
+    error,
+    isError,
+    isLoading,
+  };
 };
