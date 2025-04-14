@@ -20,6 +20,7 @@ export interface IWeatherInternalError {
 
 // Current Weather
 export interface IWeatherCurrent {
+  isDayTime: boolean;
   realFeel: number;
   realFeelShade: number;
   relativeHumidity: number;
@@ -39,7 +40,7 @@ export interface IWeatherForecast {
   forecastData: IWeatherForecastData[];
 }
 
-interface IWeatherForecastData {
+export interface IWeatherForecastData {
   date: string;
   temperatureHigh: number;
   temperatureLow: number;
