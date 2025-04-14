@@ -66,3 +66,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+img {
+  /* TODO: REMOVE TEMPORARY SIZES */
+  max-width: 100px;
+  height: auto;
+}
