@@ -44,4 +44,16 @@ describe('News Component', () => {
     renderWithQueryClient(<Article title="Test News 2" author="" />);
     expect(screen.getByText('Test News 2')).toBeInTheDocument();
   });
+
+  it('renders the "Headline" title', () => {
+    mockUseFetchNews.mockReturnValue({
+      news: [],
+      error: null,
+      isError: false,
+      isLoading: false,
+    });
+
+    renderWithQueryClient(<News />);
+    expect(screen.getByText('Headlines')).toBeInTheDocument();
+  });
 });
