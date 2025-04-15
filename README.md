@@ -12,9 +12,10 @@ A smart, AI-driven Magic Mirror with a Go backend and a React frontend. Displays
 4. [Getting Started](#getting-started)
    - [Clone the Repo](#clone-the-repo)
    - [Install Dependencies](#install-dependencies)
-     - [Frontend](#frontend)
-     - [Backend](#backend)
-     - [Run Makefile](#run-makefile)
+     - [Run Makefile Install](#run-makefile-install)
+     - [Run Makefile Run](#run-makefile-run)
+     - [Frontend](#frontend-only)
+     - [Backend](#backend-only)
      - [Run Docker](#run-docker)
    - [Requirements](#requirements)
 5. [Future Enhancements](#future-enhancements)
@@ -74,11 +75,28 @@ git clone https://github.com/hifromkevin/Magic-Mirror-on-the-Wall-v2.git
 cd Magic-Mirror-on-the-Wall-v2
 ```
 
-### Install Dependencies
+### Install Dependencies and Run
 
-#### Frontend
+#### Run Makefile Install
 
 _From parent directory_
+
+```
+make install
+```
+
+#### Run Makefile Run
+
+_From parent directory_
+
+```
+make start
+```
+
+#### Frontend Only
+
+_From parent directory_
+_(Not required if running Makefile)_
 
 ```
 cd frontend
@@ -86,25 +104,19 @@ npm install
 npm run build
 ```
 
-#### Backend
+#### Backend Only
 
 _From parent directory_
+_(Not required if running Makefile)_
 
 ```
 cd backend
 go run main.go
 ```
 
-#### Run Makefile
-
-_From parent directory_
-
-```
-make build
-```
-
 #### Run Docker
 
+_COMING SOON_
 _From parent directory_
 
 ```
