@@ -10,7 +10,6 @@ export const useFetchDadJoke = () => {
   >({
     queryKey: ['dadJoke'],
     queryFn: () => getRequest<IDadJokeResponse>('dadJoke'),
-    refetchOnWindowFocus: false,
   });
 
   return { joke: data?.joke || '', error, isError, isLoading };

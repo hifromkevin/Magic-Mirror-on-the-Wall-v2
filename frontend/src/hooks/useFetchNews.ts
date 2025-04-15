@@ -10,7 +10,6 @@ export const useFetchNews = () => {
   >({
     queryKey: ['news'],
     queryFn: () => getRequest('news'),
-    refetchOnWindowFocus: false,
   });
 
   return { news: data || [], error, isError, isLoading };
