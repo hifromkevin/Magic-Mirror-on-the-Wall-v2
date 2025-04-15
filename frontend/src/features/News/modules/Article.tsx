@@ -2,6 +2,7 @@ interface IArticle {
   title: string | null;
   author?: string | null;
 }
+
 const Article = ({ title, author }: IArticle) => {
   return (
     <span>
