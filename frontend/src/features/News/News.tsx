@@ -6,6 +6,10 @@ import { INewsArticle } from '../../types/NewsTypes';
 
 import NewsIcon from '../../assets/svg/news.svg';
 
+/***
+ * TODO: (Optional) Add pagination to news articles
+ ***/
+
 const News = () => {
   const { news, error, isError, isLoading } = useFetchNews();
   if (isLoading) {
@@ -24,7 +28,7 @@ const News = () => {
       <p className="title">Headlines</p>
 
       <div className="newsArticles">
-        {news?.slice(0, 5).map((article: INewsArticle, index: number) => (
+        {news?.map((article: INewsArticle, index: number) => (
           <>
             <img src={NewsIcon} alt="News Icon" className="newsIcon" />
             <Article
