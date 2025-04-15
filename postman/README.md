@@ -4,7 +4,7 @@ Follow these steps to configure Postman for testing the Magic Mirror on the Wall
 
 ---
 
-## ⬇️ Download Required Files
+### ⬇️ Download Required Files
 
 - `Magic Mirror.postman_collection.json`
   (Contains the API request collection)
@@ -13,7 +13,7 @@ Follow these steps to configure Postman for testing the Magic Mirror on the Wall
 
 ---
 
-## 🏗️ Configure Environment Variables
+### 🏗️ Configure Environment Variables
 
 Before using the environment file, update the following secrets in `Magic Mirror on the Wall.postman_environment.json`:
 
@@ -46,7 +46,7 @@ Before using the environment file, update the following secrets in `Magic Mirror
 
 ---
 
-## ⬆️ Import Files into Postman
+### ⬆️ Import Files into Postman
 
 1. Open Postman.
 1. Import the following files:
@@ -58,6 +58,6 @@ Before using the environment file, update the following secrets in `Magic Mirror
 
 ---
 
-## 🚀 You're Ready to Go!
+### 🚀 You're Ready to Go!
 
 You can now use Postman to test the Magic Mirror on the Wall API. Make sure your environment variables are correctly set, and enjoy exploring the API!
