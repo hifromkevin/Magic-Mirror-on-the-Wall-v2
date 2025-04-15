@@ -24,37 +24,9 @@ export const weatherMock: IWeatherResponse = {
     weatherIcon: 1,
     weatherText: 'This is weather text',
     wind: {
-      Direction: {
-        Degrees: 45,
-        Localized: 'Localized',
-        English: 'English',
-      },
-      Speed: {
-        Metric: {
-          Value: 100,
-          Unit: 'units',
-          UnitType: 50,
-        },
-        Imperial: {
-          Value: 100,
-          Unit: 'units',
-          UnitType: 50,
-        },
-      },
-    },
-    windGust: {
-      Speed: {
-        Metric: {
-          Value: 100,
-          Unit: 'units',
-          UnitType: 50,
-        },
-        Imperial: {
-          Value: 100,
-          Unit: 'units',
-          UnitType: 50,
-        },
-      },
+      degrees: 45,
+      direction: 'English',
+      speed: 100,
     },
   },
   forecast: {

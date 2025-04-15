@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import { renderWithQueryClient } from '../../../utils/TestUtils';
 
 import Weather from '../Weather';
-// import Forecast from '../modules/Forecast';
 
 import { weatherMock } from '../../../../__mocks__/weatherMock';
 import * as useFetchWeatherHook from '../../../hooks/useFetchWeather';
@@ -64,7 +63,7 @@ describe('Weather Component', () => {
     expect(screen.getByText('Feels like 75ºF')).toBeInTheDocument();
     expect(screen.getByText('Humidity: 75%')).toBeInTheDocument();
     expect(screen.getByText('in Fake City, XYZ')).toBeInTheDocument();
-    expect(screen.getByText('Wind: 100 mph 45º Localized')).toBeInTheDocument();
+    expect(screen.getByText('Wind: 100 mph 45º English')).toBeInTheDocument();
     expect(
       screen.getByText('This is weather text | This is forecast text')
     ).toBeInTheDocument();
