@@ -24,13 +24,13 @@ const Weather = () => {
         className="weatherIcon"
       />
       <div className="">
-        {<p className="">{weather.current.temperature}ºF</p>}
+        <p className="">{weather.current.temperature}ºF</p>
         <p className="">in {weather?.location}</p>
         <p className="">Feels like {weather.current.realFeel}ºF</p>
         <p className="">Humidity: {weather.current.relativeHumidity}%</p>
         <p className="">
           Wind: {weather.current.wind.Speed.Imperial.Value} mph{' '}
-          {weather.current.wind.Direction.Degrees}º
+          {weather.current.wind.Direction.Degrees}º{' '}
           {weather.current.wind.Direction.Localized}
         </p>
         <p className="">UV Index: {weather.current.uVIndex}</p>
