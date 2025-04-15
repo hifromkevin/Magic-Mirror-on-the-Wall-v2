@@ -25,8 +25,8 @@ const Forecast = ({
         className="singleForecast__icon"
       />
       <p className="singleForecast__temperature">
-        <span className="singleForecast__high">{temperatureHigh}</span> /{' '}
-        <span className="singleForecast__low">{temperatureLow}</span>
+        <span className="singleForecast__high">{temperatureHigh}ºF</span> /{' '}
+        <span className="singleForecast__low">{temperatureLow}ºF</span>
       </p>
     </div>
   );
