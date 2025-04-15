@@ -13,9 +13,9 @@ import (
 func formatDate(dateStr string) string {
 	parsedDate, err := time.Parse(time.RFC3339, dateStr)
 	if err != nil {
-			return dateStr // Return the original string if parsing fails
+			return dateStr
 	}
-	return parsedDate.Format("Monday, Jan 2") // Format as "Mon Day" (e.g., "Apr 14")
+	return parsedDate.Format("Monday, Jan 2")
 	}
 
 func GetWeather(w http.ResponseWriter, r *http.Request) {
@@ -66,7 +66,7 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	forecastUrl := fmt.Sprintf("http://dataservice.accuweather.com/forecasts/v1/daily/5day/%s?apikey=%s&metric=true", locationKey, accuweatherApi)
+	forecastUrl := fmt.Sprintf("http://dataservice.accuweather.com/forecasts/v1/daily/5day/%s?apikey=%s", locationKey, accuweatherApi)
 	forecastResp, err := http.Get(forecastUrl)
 	if err != nil {
 		http.Error(w, "Failed to fetch forecast", http.StatusInternalServerError)
