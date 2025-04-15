@@ -103,8 +103,11 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 			RealFeelTemperature: currentData[0].RealFeelTemperature.Imperial.Value,
 			RealFeelTemperatureShade: currentData[0].RealFeelTemperatureShade.Imperial.Value,
 			RelativeHumidity: currentData[0].RelativeHumidity,
-			Wind: currentData[0].Wind,
-			WindGust: currentData[0].WindGust,
+			Wind: weatherTypes.WindValues{
+				Degrees: currentData[0].Wind.Direction.Degrees, 
+				Direction: currentData[0].Wind.Direction.English,
+				Speed: currentData[0].Wind.Speed.Imperial.Value, 
+			},
 			UVIndex: currentData[0].UVIndex,
 			UVIndexText: currentData[0].UVIndexText,
 			Visibility: currentData[0].Visibility,

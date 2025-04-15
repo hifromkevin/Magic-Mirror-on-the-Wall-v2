@@ -31,7 +31,6 @@ export interface IWeatherCurrent {
   weatherIcon: number;
   weatherText: string;
   wind: IWind;
-  windGust: IWindGust;
 }
 
 // Forecast Weather
@@ -63,16 +62,7 @@ interface IMeasurementUnits {
 }
 
 interface IWind {
-  Direction: IWindDirection;
-  Speed: IMeasurements;
-}
-
-interface IWindDirection {
-  Degrees: number;
-  Localized: string;
-  English: string;
-}
-
-interface IWindGust {
-  Speed: IMeasurements;
+  degrees: number;
+  direction: string;
+  speed: number;
 }

@@ -7,8 +7,7 @@ type WeatherCurrentData struct {
     RealFeelTemperature        float64     `json:"realFeel"`
     RealFeelTemperatureShade   float64     `json:"realFeelShade"`
     RelativeHumidity           int         `json:"relativeHumidity"`
-    Wind                       Wind        `json:"wind"`
-    WindGust                   WindGust    `json:"windGust"`
+    Wind                       WindValues  `json:"wind"`
     UVIndex                    int         `json:"uVIndex"`
     UVIndexText                string      `json:"uVIndexText"`
     Visibility                 Measurement `json:"visibility"`
@@ -77,6 +76,12 @@ type Measurement struct {
 type Wind struct {
     Direction WindDirection `json:"Direction"`
     Speed     Temperature    `json:"Speed"`
+}
+
+type WindValues struct {
+    Degrees   int  `json:"degrees"`
+    Direction string   `json:"direction"`
+    Speed     float64  `json:"speed"`
 }
 
 type WindDirection struct {

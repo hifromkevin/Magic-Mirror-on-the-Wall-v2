@@ -29,9 +29,8 @@ const Weather = () => {
         <p className="">Feels like {weather.current.realFeel}ºF</p>
         <p className="">Humidity: {weather.current.relativeHumidity}%</p>
         <p className="">
-          Wind: {weather.current.wind.Speed.Imperial.Value} mph{' '}
-          {weather.current.wind.Direction.Degrees}º{' '}
-          {weather.current.wind.Direction.Localized}
+          Wind: {weather.current.wind.speed} mph {weather.current.wind.degrees}º{' '}
+          {weather.current.wind.direction}
         </p>
         <p className="">UV Index: {weather.current.uVIndex}</p>
         <p className="">UV Index Text: {weather.current.uVIndexText}</p>
