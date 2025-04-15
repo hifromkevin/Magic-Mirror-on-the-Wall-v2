@@ -44,5 +44,5 @@ func GetNews(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(newsResponse.Articles)
+	json.NewEncoder(w).Encode(newsResponse.Articles[0:5])
 }
