@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "e77ff47f-d180-430a-b2bf-7c62c74104c2",
+		"name": "Magic Mirror",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28739148"
+	},
+	"item": [
+		{
+			"name": "IpInfo.io",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://ipinfo.io/json?token={{ipInfoApi}}",
+					"protocol": "https",
+					"host": [
+						"ipinfo",
+						"io"
+					],
+					"path": [
+						"json"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{ipInfoApi}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accuweather - Get Location Code",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey={{accuweatherAPI}}&q=94541",
+					"protocol": "http",
+					"host": [
+						"dataservice",
+						"accuweather",
+						"com"
+					],
+					"path": [
+						"locations",
+						"v1",
+						"postalcodes",
+						"search"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{accuweatherAPI}}"
+						},
+						{
+							"key": "q",
+							"value": "94541"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accuweather - 5 Day",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dataservice.accuweather.com/forecasts/v1/daily/5day/{{locationKey}}?apikey={{accuweatherAPI}}",
+					"protocol": "http",
+					"host": [
+						"dataservice",
+						"accuweather",
+						"com"
+					],
+					"path": [
+						"forecasts",
+						"v1",
+						"daily",
+						"5day",
+						"{{locationKey}}"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{accuweatherAPI}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accuweather - Current Conditions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dataservice.accuweather.com/currentconditions/v1/{{locationKey}}?apikey={{accuweatherAPI}}&details=true",
+					"protocol": "http",
+					"host": [
+						"dataservice",
+						"accuweather",
+						"com"
+					],
+					"path": [
+						"currentconditions",
+						"v1",
+						"{{locationKey}}"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{accuweatherAPI}}"
+						},
+						{
+							"key": "details",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accuweather - Current Conditions No Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://dataservice.accuweather.com/currentconditions/v1/{{locationKey}}?apikey={{accuweatherAPI}}",
+					"protocol": "http",
+					"host": [
+						"dataservice",
+						"accuweather",
+						"com"
+					],
+					"path": [
+						"currentconditions",
+						"v1",
+						"{{locationKey}}"
+					],
+					"query": [
+						{
+							"key": "apikey",
+							"value": "{{accuweatherAPI}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dad Joke",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://icanhazdadjoke.com",
+					"protocol": "https",
+					"host": [
+						"icanhazdadjoke",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "News Headlines",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://newsapi.org/v2/top-headlines?country=us&apiKey={{newsAPI}}",
+					"protocol": "https",
+					"host": [
+						"newsapi",
+						"org"
+					],
+					"path": [
+						"v2",
+						"top-headlines"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "us"
+						},
+						{
+							"key": "apiKey",
+							"value": "{{newsAPI}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OpenAI - Chat Completions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{openAI}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"model\": \"gpt-4\",\n  \"messages\": [\n    { \"role\": \"system\", \"content\": \"You are a helpful assistant. The weather today in San Francisco, CA will be 80 degrees fahrenheit and sunny. Tomorrow will be overcast, and the next day will be rainy. Today in the news \" },\n    { \"role\": \"user\", \"content\": \"What is the weather today? What about the forecast?\" }\n  ],\n  \"temperature\": 0.7\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.openai.com/v1/chat/completions",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openai",
+						"com"
+					],
+					"path": [
+						"v1",
+						"chat",
+						"completions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OpenAI - TTS",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{openAI}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n      \"model\": \"tts-1\",\n      \"voice\": \"echo\",\n      \"input\": \"Hi, mom!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.openai.com/v1/audio/speech",
+					"protocol": "https",
+					"host": [
+						"api",
+						"openai",
+						"com"
+					],
+					"path": [
+						"v1",
+						"audio",
+						"speech"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
