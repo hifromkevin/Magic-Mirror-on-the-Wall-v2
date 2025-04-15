@@ -1,16 +1,17 @@
 import axios from 'axios';
 
-const axiosClient = axios.create({
-  baseURL: process.env.REACT_API_BASE_URL,
-});
+const getAxiosClient = () =>
+  axios.create({
+    baseURL: process.env.REACT_API_BASE_URL,
+  });
 
 export const getRequest = async <T>(URL: string): Promise<T> => {
-  const response = await axiosClient.get<T>(URL);
+  const response = await getAxiosClient().get<T>(URL);
   return response.data;
 };
 
 export const postRequest = async <T>(URL: string, data: any) => {
-  const response = await axiosClient.post<T>(URL, data);
+  const response = await getAxiosClient().post<T>(URL, data);
   return response.data;
 };
 
@@ -19,9 +20,9 @@ export const updateRequest = async (
   id: string,
   updatedData: any
 ) => {
-  return await axiosClient.put(`${URL}/${id}`, updatedData);
+  return await getAxiosClient().put(`${URL}/${id}`, updatedData);
 };
 
-export const deleteRequest = async (URL: string, id: string) => {
-  return await axiosClient.delete(`${URL}/${id}`);
+export const deleteRequest = async (URL: string, id: string): Promise<void> => {
+  await getAxiosClient().delete(`${URL}/${id}`);
 };
