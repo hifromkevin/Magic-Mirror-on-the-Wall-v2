@@ -156,4 +156,4 @@ Feel free to open issues or PRs. More features and optimizations are on the hori
 
 ## <a id="screenshots"></a> 📷 Screenshots
 
-![Magic Mirror on the Wall](mirror-ui.png?raw=true)
+![Magic Mirror on the Wall](mirror-ui-new.png?raw=true)
