@@ -18,4 +18,9 @@ export interface INewsArticle {
   content: string | null;
 }
 
+export interface IArticle {
+  title: string | null;
+  author?: string | null;
+}
+
 export type TNewsResponse = INewsArticle[];

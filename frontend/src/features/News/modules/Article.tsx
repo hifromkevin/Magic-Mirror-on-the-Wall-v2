@@ -1,17 +1,21 @@
-interface IArticle {
-  title: string | null;
-  author?: string | null;
-}
+import { IArticle } from '../../../types/NewsTypes';
+
+import NewsIcon from '../../../assets/svg/news.svg';
+
+import styles from '../styles/News.module.scss';
 
 const Article = ({ title, author }: IArticle) => {
   return (
-    <span>
-      <span className="title">{title}</span>
-      <span className="author">
-        {author ? ', By ' : ''}
-        {author}
+    <div className={styles.article}>
+      <img src={NewsIcon} alt="News Icon" className={styles.icon} />
+      <span>
+        <span className={styles.articleTitle}>{title}</span>
+        <span className={styles.author}>
+          {author ? ', By ' : ''}
+          {author}
+        </span>
       </span>
-    </span>
+    </div>
   );
 };
 

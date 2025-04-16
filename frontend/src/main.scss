@@ -1,0 +1,103 @@
+:root {
+  --fontFamily: sans-serif;
+
+  /**********
+   * Colors *
+   **********/
+  --black: #000;
+  --white: #fff;
+  --orange: #f90;
+
+  /**************
+   * Font Sizes *
+   **************/
+  --fontSize: 16px;
+  --font-xxs: 0.25rem;
+  --font-xs: 0.5rem;
+  --font-sm: 0.75rem;
+  --font-md: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.75rem;
+
+  /****************
+   * Font Weights *
+   ****************/
+  --ultralight: 100;
+  --light: 200;
+  --regular: 300;
+
+  /******************
+   * Letter Spacing *
+   ******************/
+  --narrow-spacing: 0.12em;
+  --mid-spacing: 0.16em;
+  --wide-spacing: 0.2em;
+
+  // BIGGEST: Time and Temperature
+  // BIG: Weather description + Dad joke
+  // MEDIUM: Headlines, forecast title
+  // Small: Date // XSmall: Weather icon text
+}
+
+/**********
+ * Resets *
+ **********/
+
+* {
+  margin: 0;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--fontFamily);
+  margin: 0;
+}
+
+/*************
+ * Keyframes *
+ *************/
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  50% {
+    transform: scale(1.1, 1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
+@keyframes animate-background {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes animate-border {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}

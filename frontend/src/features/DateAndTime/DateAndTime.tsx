@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { time, fullDate, weekday } from '../../utils/DateAndTimeUtils';
 
+import styles from './styles/DateAndTime.module.scss';
+
 const DateAndTime = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -14,10 +16,10 @@ const DateAndTime = () => {
   }, []);
 
   return (
-    <div className="dateAndTimeContainer">
-      <p className="dateAndTime__time">{time(currentDate)}</p>
-      <p className="dateAndTime__date">{fullDate(currentDate)}</p>
-      <p className="dateAndTime__day">{weekday(currentDate)}</p>
+    <div className={styles.dateAndTimeContainer}>
+      <p className={styles.time}>{time(currentDate)}</p>
+      <p>{fullDate(currentDate)}</p>
+      <p>{weekday(currentDate)}</p>
     </div>
   );
 };

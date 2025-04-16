@@ -1,0 +1,33 @@
+.newsContainer {
+  padding: 16px;
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .articles {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-sm);
+
+    .icon {
+      width: 24px;
+    }
+
+    .article {
+      align-items: center;
+      display: flex;
+
+      .articleTitle {
+        font-weight: bold;
+      }
+
+      .author {
+        font-style: oblique;
+        font-weight: 100;
+      }
+    }
+  }
+}

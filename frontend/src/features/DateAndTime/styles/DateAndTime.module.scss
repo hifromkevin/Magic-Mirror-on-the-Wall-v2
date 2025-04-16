@@ -1,0 +1,10 @@
+.dateAndTimeContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-md);
+  text-align: right;
+
+  .time {
+    font-size: var(--font-xl);
+  }
+}

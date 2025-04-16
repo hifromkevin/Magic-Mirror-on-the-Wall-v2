@@ -1,0 +1,53 @@
+.weatherContainer {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+
+  .currentContainer {
+    display: flex;
+    flex-direction: row;
+
+    .weatherIcon {
+      width: 84px;
+      vertical-align: top;
+      margin-right: 12px;
+    }
+
+    .currentText {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .currentTemperature {
+      font-size: var(--font-lg);
+    }
+
+    .currentLocation {
+      font-size: var(--font-xs);
+    }
+  }
+
+  .forecastContainer {
+    .forecastTitle {
+      font-size: var(--font-md);
+      font-weight: 600;
+    }
+
+    .forecastSubContainer {
+      display: flex;
+      flex-direction: row;
+
+      .forecast {
+        flex: 1;
+        font-size: var(--font-xs);
+
+        .icon {
+          width: 24px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}

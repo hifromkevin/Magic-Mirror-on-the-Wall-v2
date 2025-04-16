@@ -2,6 +2,8 @@
 import { IWeatherForecastData } from '../../../types/WeatherTypes';
 import { getWeatherIcon } from '../../../utils/WeatherUtils';
 
+import styles from '../styles/Weather.module.scss';
+
 const Forecast = ({
   date,
   iconDay,
@@ -12,21 +14,20 @@ const Forecast = ({
   temperatureLow,
 }: IWeatherForecastData) => {
   return (
-    <div className="forecast">
-      <p className="forecastDate">{date}</p>
+    <div className={styles.forecast}>
+      <p className={styles.forecastDate}>{date}</p>
       <img
         src={getWeatherIcon(iconDay)}
         alt={iconDayPhrase}
-        className="singleForecast__icon"
+        className={styles.icon}
       />
       <img
         src={getWeatherIcon(iconNight)}
         alt={iconNightPhrase}
-        className="singleForecast__icon"
+        className={styles.icon}
       />
-      <p className="singleForecast__temperature">
-        <span className="singleForecast__high">{temperatureHigh}ºF</span> /{' '}
-        <span className="singleForecast__low">{temperatureLow}ºF</span>
+      <p className={styles.singleForecast__temperature}>
+        <span>{temperatureHigh}ºF</span> / <span>{temperatureLow}ºF</span>
       </p>
     </div>
   );

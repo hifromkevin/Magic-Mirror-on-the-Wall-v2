@@ -4,7 +4,7 @@ import { useFetchNews } from '../../hooks/useFetchNews';
 
 import { INewsArticle } from '../../types/NewsTypes';
 
-import NewsIcon from '../../assets/svg/news.svg';
+import styles from './styles/News.module.scss';
 
 /***
  * TODO: (Optional) Add pagination to news articles
@@ -13,30 +13,23 @@ import NewsIcon from '../../assets/svg/news.svg';
 const News = () => {
   const { news, error, isError, isLoading } = useFetchNews();
   if (isLoading) {
-    return <div className="newsContainer">Loading news</div>;
+    return <div className={styles.newsContainer}>Loading news</div>;
   }
   if (isError) {
     return (
-      <div className="newsContainer">
+      <div className={styles.newsContainer}>
         <p>No news is bad news{error ? `: ${error.message}` : ''}</p>
       </div>
     );
   }
 
   return (
-    <div className="newsContainer">
-      <p className="title">Headlines</p>
+    <div className={styles.newsContainer}>
+      <p className={styles.title}>Headlines</p>
 
-      <div className="newsArticles">
+      <div className={styles.articles}>
         {news?.map((article: INewsArticle, index: number) => (
-          <>
-            <img src={NewsIcon} alt="News Icon" className="newsIcon" />
-            <Article
-              key={index}
-              author={article.author}
-              title={article.title}
-            />
-          </>
+          <Article key={index} author={article.author} title={article.title} />
         ))}
       </div>
     </div>
