@@ -16,16 +16,18 @@ const Forecast = ({
   return (
     <div className={styles.forecast}>
       <p className={styles.forecastDate}>{date}</p>
-      <img
-        src={getWeatherIcon(iconDay)}
-        alt={iconDayPhrase}
-        className={styles.icon}
-      />
-      <img
-        src={getWeatherIcon(iconNight)}
-        alt={iconNightPhrase}
-        className={styles.icon}
-      />
+      <div>
+        <img
+          src={getWeatherIcon(iconDay)}
+          alt={iconDayPhrase}
+          className={styles.icon}
+        />
+        <img
+          src={getWeatherIcon(iconNight)}
+          alt={iconNightPhrase}
+          className={styles.icon}
+        />
+      </div>
       <p className={styles.singleForecast__temperature}>
         <span>{temperatureHigh}ºF</span> / <span>{temperatureLow}ºF</span>
       </p>

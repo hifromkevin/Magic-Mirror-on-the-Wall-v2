@@ -1,13 +1,15 @@
 .appContainer {
-  padding: 4px;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow: hidden;
+  padding: 4px;
 
   .upperSection {
     box-sizing: border-box;
     display: flex;
-    height: 50%;
-    padding: 52px;
+    flex: 2;
+    padding: 26px;
     width: 100%;
 
     .left {
@@ -20,7 +22,7 @@
 
   .middleSection {
     display: flex;
-    height: 20%;
+    flex: 2;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -29,7 +31,7 @@
 
   .bottomSection {
     display: flex;
-    height: 40%;
+    flex: 2;
     width: 100%;
   }
 }

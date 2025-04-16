@@ -1,7 +1,10 @@
 .weatherContainer {
+  align-items: center;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 80%;
 
   .currentContainer {
     display: flex;
@@ -14,25 +17,38 @@
     }
 
     .currentText {
+      align-items: flex-start;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
       text-align: left;
     }
 
     .currentTemperature {
-      font-size: var(--font-lg);
+      font-size: var(--font-xl);
+      letter-spacing: 2px;
     }
 
     .currentLocation {
-      font-size: var(--font-xs);
+      font-size: var(--font-sm);
     }
   }
 
+  .description {
+    margin: 24px 0;
+    font-weight: 100;
+    font-size: var(--font-lg);
+    letter-spacing: 2px;
+  }
+
   .forecastContainer {
+    width: 70%;
+
     .forecastTitle {
+      letter-spacing: 2px;
       font-size: var(--font-md);
       font-weight: 600;
+      padding: 8px;
+      text-align: center;
     }
 
     .forecastSubContainer {
@@ -40,8 +56,11 @@
       flex-direction: row;
 
       .forecast {
+        align-items: center;
+        display: flex;
         flex: 1;
-        font-size: var(--font-xs);
+        flex-direction: column;
+        font-size: var(--font-sm);
 
         .icon {
           width: 24px;
