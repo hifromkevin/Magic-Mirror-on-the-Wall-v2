@@ -45,7 +45,7 @@ describe('DadJoke Component', () => {
     renderWithQueryClient(<DadJoke />);
     expect(
       screen.getByText(
-        "Dad Joke: Why don't skeletons fight each other? They don't have the guts."
+        "Why don't skeletons fight each other? They don't have the guts."
       )
     ).toBeInTheDocument();
   });
