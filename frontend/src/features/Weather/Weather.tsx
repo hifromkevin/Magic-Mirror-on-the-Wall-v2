@@ -3,6 +3,7 @@ import Forecast from './modules/Forecast';
 import { useFetchWeather } from '../../hooks/useFetchWeather';
 
 import { getWeatherIcon } from '../../utils/WeatherUtils';
+import { WeatherLoadingGif } from '../../assets/weatherIcons';
 
 import styles from './styles/Weather.module.scss';
 
@@ -10,7 +11,11 @@ const Weather = () => {
   const { weather, error, isError, isLoading } = useFetchWeather();
 
   if (isLoading)
-    return <div className={styles.weatherContainer}>Loading weather</div>;
+    return (
+      <div className={styles.weatherContainer}>
+        <img src={WeatherLoadingGif} alt="Weather is loading" />
+      </div>
+    );
 
   if (isError)
     return (

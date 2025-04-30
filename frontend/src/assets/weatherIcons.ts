@@ -8,6 +8,7 @@ import Wind from './svg/wind.svg';
 import Fog from './svg/fog.svg';
 import ClearNight from './svg/clear-night.svg';
 import CloudyNight from './svg/cloudy-night.svg';
+import WeatherLoadingGif from './weather-loading.gif';
 
 export {
   Clear,
@@ -20,4 +21,5 @@ export {
   Fog,
   ClearNight,
   CloudyNight,
+  WeatherLoadingGif,
 };
