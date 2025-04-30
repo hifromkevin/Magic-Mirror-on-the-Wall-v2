@@ -1,13 +1,17 @@
 package routes
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
-	"magic-mirror-on-the-wall-backend/types"
-	"magic-mirror-on-the-wall-backend/types/weatherTypes"
+
 	"net/http"
 	"os"
 	"time"
+
+	"magic-mirror-on-the-wall-backend/redis"
+	"magic-mirror-on-the-wall-backend/types"
+	"magic-mirror-on-the-wall-backend/types/weatherTypes"
 )
 
 func formatDate(dateStr string) string {
@@ -19,6 +23,9 @@ func formatDate(dateStr string) string {
 	}
 
 func GetWeather(w http.ResponseWriter, r *http.Request) {
+	ctx := context.Background()
+	redis.InitRedis()
+
 	ipApiKey := os.Getenv("IP_INFO_API")
 	accuweatherApi := os.Getenv("ACCUWEATHER_API")
 	
@@ -36,6 +43,14 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	postal := ipInfo.Postal
+
+	cacheKey := fmt.Sprintf("weather:%s", postal)
+    cachedWeather, err := redis.RedisClient.Get(ctx, cacheKey).Result()
+    if err == nil {
+        w.Header().Set("Content-Type", "application/json")
+        w.Write([]byte(cachedWeather))
+        return
+    }
 
 	locationUrl := fmt.Sprintf("http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=%s&q=%s", accuweatherApi, postal)
 	locResp, err := http.Get(locationUrl)
@@ -119,6 +134,9 @@ func GetWeather(w http.ResponseWriter, r *http.Request) {
 	},
 		Location: fmt.Sprintf("%s, %s", ipInfo.City, ipInfo.Region), 
 	}
+
+	responseBytes, _ := json.Marshal(fullResponse)
+	redis.RedisClient.Set(ctx, cacheKey, string(responseBytes), 30*time.Minute)
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(fullResponse)
