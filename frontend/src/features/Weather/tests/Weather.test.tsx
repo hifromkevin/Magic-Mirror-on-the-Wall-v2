@@ -19,7 +19,7 @@ describe('Weather Component', () => {
     });
 
     renderWithQueryClient(<Weather />);
-    expect(screen.getByText('Loading weather')).toBeInTheDocument();
+    expect(screen.getByAltText('Weather is loading')).toBeInTheDocument();
   });
 
   it('renders error state', () => {

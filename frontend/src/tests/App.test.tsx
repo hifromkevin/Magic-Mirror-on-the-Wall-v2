@@ -9,7 +9,7 @@ describe('App Component', () => {
 
     const currentDate = new Date();
 
-    expect(screen.getByText(/Loading weather/i)).toBeInTheDocument();
+    expect(screen.getByAltText('Weather is loading')).toBeInTheDocument();
     expect(screen.getByText(/Hi, Loading! I'm Dad!/i)).toBeInTheDocument();
     expect(screen.getByText(/Loading news/i)).toBeInTheDocument();
     expect(screen.getByText(fullDate(currentDate))).toBeInTheDocument();
