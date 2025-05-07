@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:alpine
+    container_name: mirror_redis
+    ports:
+      - '6379:6379'
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: mirror_backend
+    ports:
+      - '3005:3005'
+    depends_on:
+      - redis
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: mirror_frontend
+    ports:
+      - '5173:5173'
+    depends_on:
+      - backend
+    env_file:
+      - .env
+    restart: unless-stopped
