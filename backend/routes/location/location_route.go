@@ -7,12 +7,13 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/gin-gonic/gin"
+
 	"magic-mirror-on-the-wall-backend/types"
+	"magic-mirror-on-the-wall-backend/utils"
 )
 
-
-
-func GetLocationInfo(w http.ResponseWriter, r *http.Request) {
+func GetLocationInfo(c *gin.Context) {
 	ipApiKey := os.Getenv("IP_INFO_API")
 	accuweatherApi := os.Getenv("ACCUWEATHER_API")
 
@@ -20,24 +21,25 @@ func GetLocationInfo(w http.ResponseWriter, r *http.Request) {
 	ipUrl := fmt.Sprintf("https://ipinfo.io/json?token=%s", ipApiKey)
 	resp, err := http.Get(ipUrl)
 	if err != nil {
-			log.Printf("Failed to fetch IP location: %v", err)
-			http.Error(w, "Failed to fetch IP location: "+err.Error(), http.StatusInternalServerError)
-			return
+		utils.HandleError(c, http.StatusInternalServerError, "Failed to fetch IP location", err)
+		return
 	}
-	defer resp.Body.Close()
+
+	defer func() {
+		if err := resp.Body.Close(); err != nil {
+			log.Printf("Error closing response body: %v", err)
+		}
+	}()
 
 	if resp.StatusCode != http.StatusOK {
-			log.Printf("IP Info API returned status: %d", resp.StatusCode)
-			http.Error(w, "IP Info API returned an error", http.StatusInternalServerError)
-			return
+		utils.HandleError(c, http.StatusInternalServerError, "IP Info API returned an error", fmt.Errorf("status code: %d", resp.StatusCode))
+		return
 	}
 
 	var ipInfoResponse types.IpInfoResponse
-	err = json.NewDecoder(resp.Body).Decode(&ipInfoResponse)
-	if err != nil {
-			log.Printf("Failed to decode IP info response: %v", err)
-			http.Error(w, "Failed to decode IP info response: "+err.Error(), http.StatusInternalServerError)
-			return
+	if err := json.NewDecoder(resp.Body).Decode(&ipInfoResponse); err != nil {
+		utils.HandleError(c, http.StatusInternalServerError, "Failed to decode IP info response", err)
+		return
 	}
 
 	// Step 2: Use postal code to get location key from AccuWeather API
@@ -45,30 +47,34 @@ func GetLocationInfo(w http.ResponseWriter, r *http.Request) {
 	locationUrl := fmt.Sprintf("http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=%s&q=%s", accuweatherApi, postal)
 	locationResp, err := http.Get(locationUrl)
 	if err != nil {
-			log.Printf("Failed to fetch location key: %v", err)
-			http.Error(w, "Failed to fetch location key: "+err.Error(), http.StatusInternalServerError)
-			return
+		utils.HandleError(c, http.StatusInternalServerError, "Failed to fetch location key", err)
+		return
 	}
-	defer locationResp.Body.Close()
+
+	defer func() {
+		if err := locationResp.Body.Close(); err != nil {
+			log.Printf("Error closing response body: %v", err)
+		}
+	}()
 
 	if locationResp.StatusCode != http.StatusOK {
-			log.Printf("AccuWeather Location API returned status: %d", locationResp.StatusCode)
-			http.Error(w, "AccuWeather Location API returned an error", http.StatusInternalServerError)
-			return
+		utils.HandleError(c, http.StatusInternalServerError, "AccuWeather Location API returned an error", fmt.Errorf("status code: %d", locationResp.StatusCode))
+		return
 	}
 
 	var locationData []map[string]interface{}
-	err = json.NewDecoder(locationResp.Body).Decode(&locationData)
-	if err != nil || len(locationData) == 0 {
-			log.Printf("Failed to decode location response: %v", err)
-			http.Error(w, "Failed to decode location response: "+err.Error(), http.StatusInternalServerError)
-			return
+	if err := json.NewDecoder(locationResp.Body).Decode(&locationData); err != nil || len(locationData) == 0 {
+		utils.HandleError(c, http.StatusInternalServerError, "Failed to decode location response", err)
+		return
 	}
 
 	// Extract the Key from the first result
-	locationKey := locationData[0]["Key"].(string)
+	locationKey, ok := locationData[0]["Key"].(string)
+	if !ok {
+		utils.HandleError(c, http.StatusInternalServerError, "Invalid location key format", fmt.Errorf("unexpected type for Key"))
+		return
+	}
 
 	// Return the location key as JSON
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{"Key": locationKey})
+	c.JSON(http.StatusOK, gin.H{"Key": locationKey})
 }

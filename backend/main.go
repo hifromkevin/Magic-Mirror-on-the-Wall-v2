@@ -5,9 +5,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
+	"magic-mirror-on-the-wall-backend/redis"
 	"magic-mirror-on-the-wall-backend/routes"
 )
 
@@ -19,43 +20,34 @@ func init() {
 	}
 }
 
-func enableCORS(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*") 
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
-		if r.Method == "OPTIONS" {
-			return
-		}
-		next.ServeHTTP(w, r)
-	})
-}
-
 func main() {
-	router := mux.NewRouter()
+	redis.InitRedis()
 
-	router.HandleFunc("/dadJoke", routes.GetDadJoke).Methods("GET")
-	router.HandleFunc("/news", routes.GetNews).Methods("GET")
-	router.HandleFunc("/weather", routes.GetWeather).Methods("GET")
+	router := gin.Default()
 
 	staticDir := "../frontend/dist"
-	router.PathPrefix("/").Handler(http.StripPrefix("/", http.FileServer(http.Dir(staticDir))))
+	router.Static("/assets", staticDir+"/assets")
 
-	router.PathPrefix("/").HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path == "/" || r.URL.Path == "/index.html" {
-			http.ServeFile(w, r, staticDir+"/index.html")
+	router.GET("/dadJoke", routes.GetDadJoke)
+	router.GET("/news", routes.GetNews)
+	router.GET("/weather", routes.GetWeather)
+
+	router.NoRoute(func(c *gin.Context) {
+		if c.Request.URL.Path == "/" || c.Request.URL.Path == "/index.html" {
+			c.File(staticDir + "/index.html")
 		} else {
-			http.NotFound(w, r)
+			c.Status(http.StatusNotFound)
 		}
 	})
-	
+
+	// Port setup
 	port := os.Getenv("GO_PORT")
 	if port == "" {
-		port = "3005" 
+		port = "3005"
 	}
 
 	log.Printf("Server started on :%s\n", port)
-	if err := http.ListenAndServe(":"+port, enableCORS(router)); err != nil {
-		log.Fatal("ListenAndServe:", err)
+	if err := router.Run(":" + port); err != nil {
+		log.Fatal("Failed to run server:", err)
 	}
 }

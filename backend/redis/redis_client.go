@@ -9,16 +9,21 @@ import (
 
 var RedisClient *redis.Client
 var ctx = context.Background()
+var RedisAvailable bool
 
 func InitRedis() {
-    RedisClient = redis.NewClient(&redis.Options{
-        Addr: "localhost:6379", // Redis server address
-        DB:   0,                // Default DB
-    })
+	RedisClient = redis.NewClient(&redis.Options{
+		Addr: "localhost:6379", // Redis server address
+		DB:   0,                // Default DB
+	})
 
-    // Test the connection
-    _, err := RedisClient.Ping(ctx).Result()
-    if err != nil {
-        log.Fatalf("Failed to connect to Redis: %v", err)
-    }
+	// Test the connection
+	_, err := RedisClient.Ping(ctx).Result()
+	if err != nil {
+		log.Fatalf("Failed to connect to Redis: %v", err)
+		RedisAvailable = false
+		return
+	}
+
+	RedisAvailable = true
 }
